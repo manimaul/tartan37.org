@@ -3,7 +3,6 @@ import Gallery from './routes/Gallery';
 import Fleet from './routes/Fleet';
 import Specifications from './routes/Specifications';
 import TechResources from './routes/TechResources';
-import SalesFloor from './routes/SalesFloor';
 import History from './routes/History';
 import {Route} from 'react-router-dom';
 import Menu from "./components/Menu";
@@ -20,7 +19,6 @@ export default class App extends Component<any, any> {
                 <Route exact={true} path={"/specs"} component={Specifications}/>
                 <Route exact={true} path={"/resources"} component={TechResources}/>
                 {/*Forum */}
-                <Route exact={true} path={"/4sale"} component={SalesFloor}/>
                 <Route exact={true} path={"/history"} component={History}/>
 
                 <Route exact={true} path={"/index.html"} component={Home}/>
@@ -30,7 +28,6 @@ export default class App extends Component<any, any> {
                 <Route exact={true} path={"/techresource.html"} component={TechResources}/>
                 <Route exact={true} path={"/history.html"} component={History}/>
 
-                <Route exact={true} path={"/4sale.html"} component={SalesFloor}/>
             </div>
         );
     }
