@@ -31,8 +31,10 @@ spec:
       labels:
         app: t37-web-svc
     spec:
+      imagePullSecrets:
+        - name: ghreg
       containers:
-        - image: docker.io/manimaul/t37.com:latest
+        - image: ghcr.io/manimaul/t37.org:06-08-26_r0
           name: t37-web-svc
 #          env:
 #            - name: TLS_DIR
