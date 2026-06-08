@@ -40,8 +40,7 @@ class MenuInternal extends Component<any, any> {
                             <Nav.Link active={this.getIsActive("/gallery")} href="/gallery">Gallery</Nav.Link>
                             <Nav.Link active={this.getIsActive("/specs")} href="/specs">Specifications</Nav.Link>
                             <Nav.Link active={this.getIsActive("/resources")} href="/resources">Tech Resources</Nav.Link>
-                            <Nav.Link href="http://www.tartan37.com/t37forum/">Forum</Nav.Link>
-                            <Nav.Link active={this.getIsActive("/4sale")} href="/4sale">Sales Floor</Nav.Link>
+                            <Nav.Link href="https://www.tartan37.net/forum/index.php">Forum</Nav.Link>
                             <Nav.Link active={this.getIsActive("/history")} href="/history">History</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>

@@ -3,18 +3,6 @@ kind: Namespace
 metadata:
   name: t37
 ---
-apiVersion: autoscaling/v1
-kind: HorizontalPodAutoscaler
-metadata:
-  name: t37-web-scaler
-spec:
-  scaleTargetRef:
-    kind: ReplicaSet
-    name: t37-web-dep
-  minReplicas: 3
-  maxReplicas: 10
-  targetCPUUtilizationPercentage: 50
----
 apiVersion: v1
 kind: Service
 metadata:
@@ -43,9 +31,14 @@ spec:
       labels:
         app: t37-web-svc
     spec:
+      imagePullSecrets:
+        - name: ghreg
       containers:
-        - image: docker.io/manimaul/t37.com:07-11-21_r0
+        - image: ghcr.io/manimaul/t37.org:06-08-26_r0
           name: t37-web-svc
+#          env:
+#            - name: TLS_DIR
+#              value: "none"
           ports:
             - containerPort: 8443
               name: http
@@ -53,26 +46,43 @@ spec:
             requests:
               cpu: 100m
 ---
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  annotations:
-    haproxy.org/server-ssl: "true"
-    haproxy.org/ssl-redirect: "true" # https://www.haproxy.com/documentation/kubernetes/latest/configuration/ingress/
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
   name: t37ingress
   namespace: t37
+  annotations:
+    haproxy.org/server-ssl: "true"
+    haproxy.org/server-verify: "none"
 spec:
+  ingressClassName: haproxy
   rules:
-    - host: t37.willkamp.com
+    - host: tartan37.org
       http:
         paths:
           - path: /
+            pathType: Prefix
             backend:
-              serviceName: t37-web-svc
-              servicePort: 8443
+              service:
+                name: t37-web-svc
+                port:
+                  number: 8443
   tls:
     - hosts:
-        - t37.willkamp.com
+        - tartan37.org
       secretName: t37-cert
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: t37-cert
+  namespace: t37
+spec:
+  secretName: t37-cert
+  commonName: tartan37.org
+  dnsNames:
+    - tartan37.org
+  issuerRef:
+    kind: ClusterIssuer
+    name: letsencrypt-prod
 ---
