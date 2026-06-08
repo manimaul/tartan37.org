@@ -5,7 +5,7 @@ npm install --save @types/react-router
 npm install --save @types/react-router-dom
 yarn build
 tag_postfix="$(date +"%m-%d-%y")_r0"
-docker build -t "docker.io/manimaul/t37.com:${tag_postfix}" .
-docker tag "docker.io/manimaul/t37.com:${tag_postfix}" "manimaul/t37.com:latest"
-docker push "docker.io/manimaul/t37.com:latest"
-docker push "docker.io/manimaul/t37.com:${tag_postfix}"
+podman build -t "ghcr.io/manimaul/t37.org:${tag_postfix}" .
+#podman tag "ghcr.io/manimaul/t37.org:${tag_postfix}" "manimaul/t37.org:latest"
+#podman push "ghcr.io/manimaul/t37.org:latest"
+podman push "ghcr.io/manimaul/t37.org:${tag_postfix}"
