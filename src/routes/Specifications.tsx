@@ -36,15 +36,15 @@ function Specifications() {
                         </tr>
                         <tr>
                             <th scope="row">Draft (Fin)</th>
-                            <td>Up 4' 2" - Down 7' 9"</td>
+                            <td>6' 7"</td>
                         </tr>
                         <tr>
                             <th scope="row">Displacement</th>
-                            <td>15,500lbs</td>
+                            <td>17,800.00 lb</td>
                         </tr>
                         <tr>
                             <th scope="row">Ballast</th>
-                            <td>7,500lbs</td>
+                            <td>7,500.00 lb</td>
                         </tr>
                         <tr>
                             <th scope="row">Datum Waterline</th>
