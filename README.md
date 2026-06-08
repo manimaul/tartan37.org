@@ -1,7 +1,8 @@
 
+# Tartan37.org Owner's Site
+React / Vite Web app
 
+Build:
 ```
-npm install --save react-bootstrap bootstrap@5.0.0
-npm install --save @types/react-router
-npm install --save @types/react-router-dom
+yarn build
 ```
