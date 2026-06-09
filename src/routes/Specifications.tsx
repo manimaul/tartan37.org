@@ -64,7 +64,7 @@ function Specifications() {
                         </tr>
                         <tr>
                             <th scope="row">Auxiliary Power</th>
-                            <td>Most are powered with the Westerbeke 50 or Westerbeke 50 engine.</td>
+                            <td>Most are powered with the Westerbeke 40 or Westerbeke 50 engine.</td>
                         </tr>
                         </tbody>
                     </table>
