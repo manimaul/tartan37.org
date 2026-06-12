@@ -1,0 +1,16 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # 1. Do NOT rewrite any path starting with /forum
+  RewriteRule ^forum(/|$) - [L]
+
+  # 2. Existing SPA rewrite rules
+  # If the requested filename is not a real file on the server...
+  RewriteCond %{REQUEST_FILENAME} !-f
+  # ...and is not a real directory...
+  RewriteCond %{REQUEST_FILENAME} !-d
+  # ...internally rewrite the request to index.html
+  RewriteRule . /index.html [L]
+
+</IfModule>
