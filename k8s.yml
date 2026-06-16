@@ -34,7 +34,7 @@ spec:
       imagePullSecrets:
         - name: ghreg
       containers:
-        - image: ghcr.io/manimaul/t37.org:06-08-26_r0
+        - image: ghcr.io/manimaul/t37.org:06-16-26_r0
           imagePullPolicy: Always
           name: t37-web-svc
 #          env:

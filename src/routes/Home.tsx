@@ -8,6 +8,7 @@ import silentVoyage from '../assets/images/silentVoyage.jpeg';
 import oceansAreWaiting from '../assets/images/oceansAreWaiting.jpeg';
 import superiorRun from '../assets/images/superiorRun.jpeg';
 import soulianis from '../assets/images/soulianis.jpg';
+import tge from '../assets/images/the_great_escape.jpg';
 import whim from '../assets/images/whim.jpg';
 import holiday from '../assets/images/holiday.jpg';
 import './Home.css'
@@ -39,7 +40,17 @@ function Home() {
                 <br/>
                 <br/>
                 <h3>Vlogs featuring the Tartan 37</h3>
-
+                <div className="card">
+                    <img src={tge} className="circle-img vlog-img"/>
+                    <div className="card-body">
+                        <h5 className="card-title">The Great Escape</h5>
+                        <p className="card-text">We quit our jobs in the fall of 2025 to set sail on an adventure of a lifetime.
+                            We've sailed over 2,000 nautical miles so far, from our home in Maryland all the way to the Bahamas.
+                            Join us each week for new episodes where we show the ups and down of living a life on the water.</p>
+                        <a href="https://www.youtube.com/@thegreatescape2022" className="btn btn-danger">Watch on YouTube</a>
+                    </div>
+                </div>
+                <br/>
                 <div className="card">
                     <img src={soulianis} className="card-img-top vlog-img"/>
                     <div className="card-body">
@@ -51,8 +62,7 @@ function Home() {
                             37 in Wisconsin, sailed for a season in the fresh water of Lake Michigan, and are migrating
                             south via the inland river system to saltwater and warmer climates. Join us on our
                             journey!</p>
-                        <a href="https://www.youtube.com/channel/UCRqsOR0Y2zru-jXSzLcMcxg" className="btn btn-danger">Watch
-                            on YouTube</a>
+                        <a href="https://www.youtube.com/channel/UCRqsOR0Y2zru-jXSzLcMcxg" className="btn btn-danger">Watch on YouTube</a>
                     </div>
                 </div>
                 <br/>
