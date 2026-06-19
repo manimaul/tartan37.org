@@ -4,6 +4,30 @@ metadata:
   name: t37
 ---
 apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: t37-redirect-conf
+  namespace: t37
+data:
+  nginx.conf: |
+    worker_processes auto;
+
+    events {
+        worker_connections 1024;
+    }
+
+    http {
+        server {
+            listen 8080;
+            server_name _;
+
+            location / {
+                return 302 https://tartan37.net$request_uri;
+            }
+        }
+    }
+---
+apiVersion: v1
 kind: Service
 metadata:
   name: t37-web-svc
@@ -11,8 +35,8 @@ metadata:
 spec:
   ports:
     - name: http
-      port: 8443
-      targetPort: 8443
+      port: 8080
+      targetPort: 8080
   selector:
     app: t37-web-svc
   type: ClusterIP
@@ -20,7 +44,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: t37-web-deb
+  name: t37-redirect-deb
   namespace: t37
 spec:
   selector:
@@ -31,30 +55,30 @@ spec:
       labels:
         app: t37-web-svc
     spec:
-      imagePullSecrets:
-        - name: ghreg
+      volumes:
+        - name: nginx-conf
+          configMap:
+            name: t37-redirect-conf
       containers:
-        - image: ghcr.io/manimaul/t37.org:06-16-26_r0
+        - image: nginx:alpine
           imagePullPolicy: Always
           name: t37-web-svc
-#          env:
-#            - name: TLS_DIR
-#              value: "none"
+          volumeMounts:
+            - name: nginx-conf
+              mountPath: /etc/nginx/nginx.conf
+              subPath: nginx.conf
           ports:
-            - containerPort: 8443
+            - containerPort: 8080
               name: http
           resources:
             requests:
-              cpu: 100m
----
+              cpu: 50m
+---              
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: t37ingress
   namespace: t37
-  annotations:
-    haproxy.org/server-ssl: "true"
-    haproxy.org/server-verify: "none"
 spec:
   ingressClassName: haproxy
   rules:
@@ -67,7 +91,7 @@ spec:
               service:
                 name: t37-web-svc
                 port:
-                  number: 8443
+                  number: 8080
   tls:
     - hosts:
         - tartan37.org
@@ -86,4 +110,3 @@ spec:
   issuerRef:
     kind: ClusterIssuer
     name: letsencrypt-prod
----

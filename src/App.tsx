@@ -4,22 +4,30 @@ import Fleet from './routes/Fleet';
 import Specifications from './routes/Specifications';
 import TechResources from './routes/TechResources';
 import History from './routes/History';
+import Login from './routes/Login';
+import FleetEdit from './routes/FleetEdit';
+import FleetPending from './routes/FleetPending';
 import {Route} from 'react-router-dom';
 import Menu from "./components/Menu";
 import {Component} from "react";
+import {AuthProvider} from "./AuthContext";
 
 export default class App extends Component<any, any> {
     render() {
         return (
+            <AuthProvider>
             <div>
                 <Menu/>
                 <Route exact={true} path={"/"} component={Home}/>
                 <Route exact={true} path={"/fleet"} component={Fleet}/>
+                <Route exact={true} path={"/fleet/edit"} component={FleetEdit}/>
+                <Route exact={true} path={"/fleet/pending"} component={FleetPending}/>
                 <Route exact={true} path={"/gallery"} component={Gallery}/>
                 <Route exact={true} path={"/specs"} component={Specifications}/>
                 <Route exact={true} path={"/resources"} component={TechResources}/>
                 {/*Forum */}
                 <Route exact={true} path={"/history"} component={History}/>
+                <Route exact={true} path={"/login"} component={Login}/>
 
                 <Route exact={true} path={"/index.html"} component={Home}/>
                 <Route exact={true} path={"/fleet.htm"} component={Fleet}/>
@@ -29,6 +37,7 @@ export default class App extends Component<any, any> {
                 <Route exact={true} path={"/history.html"} component={History}/>
 
             </div>
+            </AuthProvider>
         );
     }
 }
