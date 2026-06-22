@@ -75,4 +75,41 @@ if (file_put_contents($tmp, json_encode($data, JSON_PRETTY_PRINT)) === false
     exit;
 }
 
+notify_administrators_of_pending_fleet_update();
+
 echo json_encode(['ok' => true, 'hull' => $hull]);
+
+function notify_administrators_of_pending_fleet_update()
+{
+    global $db, $phpbb_root_path, $phpEx;
+
+    $sql = 'SELECT u.username, u.user_email, u.user_lang
+        FROM ' . USERS_TABLE . ' u, ' . USER_GROUP_TABLE . ' ug, ' . GROUPS_TABLE . ' g
+        WHERE g.group_name = \'ADMINISTRATORS\'
+            AND ug.group_id = g.group_id
+            AND ug.user_pending = 0
+            AND u.user_id = ug.user_id
+            AND u.user_email <> \'\'';
+    $result = $db->sql_query($sql);
+    $admins = $db->sql_fetchrowset($result);
+    $db->sql_freeresult($result);
+
+    if (empty($admins)) {
+        return;
+    }
+
+    if (!class_exists('messenger')) {
+        include($phpbb_root_path . 'includes/functions_messenger.' . $phpEx);
+    }
+
+    $messenger = new messenger(false);
+    $templatePath = __DIR__ . '/email_templates';
+
+    foreach ($admins as $admin) {
+        $messenger->template('fleet_pending_notify', $admin['user_lang'], $templatePath);
+        $messenger->set_addresses($admin);
+        $messenger->send(NOTIFY_EMAIL);
+    }
+
+    $messenger->save_queue();
+}
