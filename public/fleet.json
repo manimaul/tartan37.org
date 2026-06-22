@@ -1679,12 +1679,17 @@
     {
         "hull": 162,
         "owner": {
-            "name": ""
+            "name": "Gina & Mike",
+            "modified_by_user_id": 398,
+            "modified_by_username": "madmike",
+            "modified_ds": "2026-06-22T14:15:31+00:00"
         },
-        "name": "",
-        "type": "",
-        "blurb": "",
-        "location": ""
+        "name": "Hotate Maru",
+        "type": "centerboard",
+        "blurb": "After several years in the SF Bay Area and northern California, we're heading south and west.",
+        "location": "Sea of Cortez, Mexico. Headed towards the South Pacific",
+        "web": "",
+        "img": "162.jpg"
     },
     {
         "hull": 163,
