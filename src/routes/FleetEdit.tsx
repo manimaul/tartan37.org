@@ -126,7 +126,15 @@ function FleetEdit() {
         <div className="container">
             <h2>Update Fleet Record Request</h2>
             {error && <Alert variant="danger">{error}</Alert>}
-            {success && <Alert variant="success">{success}</Alert>}
+            {success && (
+                <>
+                    <Alert variant="success">{success}</Alert>
+                    <Button variant="primary" onClick={() => history.push('/fleet')}>
+                        OK
+                    </Button>
+                </>
+            )}
+            {!success && (
             <Form style={{maxWidth: '600px'}} onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="hullSelect">
                     <Form.Label>Hull Number</Form.Label>
@@ -194,6 +202,7 @@ function FleetEdit() {
                     Submit Update
                 </Button>
             </Form>
+            )}
         </div>
     );
 }

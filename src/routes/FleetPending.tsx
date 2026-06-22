@@ -85,7 +85,7 @@ function FleetPending() {
                         Location: {record.location}<br/>
                         {record.web && <div>Web: <a href={record.web}>{record.web}</a><br/></div>}
                         {record.img && (
-                            <div><br/><img src={`/fleet_pending_image.php?hull=${record.hull}`} /><br/></div>
+                             <div><br/><img src={`/fleet_pending_image.php?hull=${record.hull}`} style={{ maxWidth: 300, maxHeight: 300 }} /><br/></div>
                         )}
                         <p><i>{record.blurb}</i></p>
                         <Form.Check
