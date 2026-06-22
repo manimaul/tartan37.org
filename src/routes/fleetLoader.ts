@@ -1,0 +1,18 @@
+export interface Owner {
+    name: string;
+}
+
+export interface FleetItem {
+    hull: number;
+    owner: Owner;
+    name: string;
+    type: string;
+    blurb: string;
+    location: string;
+    img: string;
+    web: string;
+}
+
+export function loadFleet(): Promise<FleetItem[]> {
+    return fetch('/fleet.json', { cache: 'no-store' }).then(r => r.json());
+}

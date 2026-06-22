@@ -1,46 +1,25 @@
 import React from 'react';
-import data from '../assets/fleet.json';
-
-export interface Owner {
-    name: string;
-}
-
-export interface FleetItem {
-    hull: number;
-    owner: Owner;
-    name: string;
-    type: string;
-    blurb: string;
-    location: string;
-    img: string;
-    web: string;
-}
-
-export const fleetData = data as FleetItem[];
+import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
+import { AuthContext } from '../AuthContext';
+import { FleetItem, loadFleet } from './fleetLoader';
 
 function Image(named: string) {
     if (named != null && named.length > 0) {
-        return(
-            <div><br /><img src={'/fleetimg/' + named} /><br /></div>
-        )
-    } else {
-        return null
+        return <div><br /><img src={'/fleetimg/' + named} style={{ maxWidth: 300, maxHeight: 300 }} /><br /></div>;
     }
+    return null;
 }
 
 function Web(named: string) {
     if (named != null && named.length > 0) {
-        return(
-            <div>Web: <a href={named} >{named}</a><br /></div>
-        )
-    } else {
-        return null
+        return <div>Web: <a href={named}>{named}</a><br /></div>;
     }
+    return null;
 }
 
 function Item(it: FleetItem) {
     return (
-
         <div>
             <h4>Hull #{it.hull}</h4>
             Owner: {it.owner.name}<br/>
@@ -52,17 +31,32 @@ function Item(it: FleetItem) {
             <p><i>{it.blurb}</i></p>
             <hr />
         </div>
-    )
+    );
 }
 
-export default class Fleet extends React.Component<any, any> {
+export default class Fleet extends React.Component<any, { fleet: FleetItem[] }> {
+    static contextType = AuthContext;
+    declare context: React.ContextType<typeof AuthContext>;
 
+    constructor(props: any) {
+        super(props);
+        this.state = { fleet: [] };
+    }
+
+    componentDidMount() {
+        loadFleet().then(fleet => this.setState({ fleet }));
+    }
 
     public render() {
         return (
             <div className="container">
-                {fleetData.map((it) => Item(it))}
+                {this.context.username && (
+                    <div className="mb-3">
+                        <Link to="/fleet/edit"><Button variant="primary">Request Update</Button></Link>
+                    </div>
+                )}
+                {this.state.fleet.map((it) => Item(it))}
             </div>
-        )
+        );
     }
 }

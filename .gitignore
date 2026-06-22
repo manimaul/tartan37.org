@@ -1,4 +1,6 @@
 export/
+backup/
+
 __pycache__/
 dist/
 

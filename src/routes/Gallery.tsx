@@ -1,24 +1,22 @@
-import React from 'react';
-import {fleetData, FleetItem} from "./Fleet";
+import React, { useState, useEffect } from 'react';
+import { FleetItem, loadFleet } from './fleetLoader';
 
-let chunkSize = 4
+const chunkSize = 4;
 
 function Chunk(arr: FleetItem[]) {
     const res = [];
     for (let i = 0; i < arr.length; i += chunkSize) {
-        const chunk = arr.slice(i, i + chunkSize);
-        res.push(chunk);
+        res.push(arr.slice(i, i + chunkSize));
     }
     return res;
 }
 
 function Image(named: string) {
-    let url = '/fleetimg/' + named
     return (
         <div>
-            <img src={url}/><br/>
+            <img src={'/fleetimg/' + named} style={{ maxWidth: 300, maxHeight: 300 }}/><br/>
         </div>
-    )
+    );
 }
 
 function Col(item: FleetItem) {
@@ -42,16 +40,18 @@ function Row(groups: FleetItem[]) {
     );
 }
 
-function FleetDataWithImages() {
-    return fleetData.filter((item: FleetItem) => {
-        return item.img != null && item.img.length > 0
-    })
-}
-
 function Gallery() {
+    const [fleet, setFleet] = useState<FleetItem[]>([]);
+
+    useEffect(() => {
+        loadFleet().then(setFleet);
+    }, []);
+
+    const withImages = fleet.filter(item => item.img != null && item.img.length > 0);
+
     return (
         <div className="container">
-            {Chunk(FleetDataWithImages()).map((chunk) => Row(chunk))}
+            {Chunk(withImages).map((chunk) => Row(chunk))}
         </div>
     );
 }
