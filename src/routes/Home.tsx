@@ -1,9 +1,6 @@
-import React from 'react';
-import tartan37 from '../assets/images/tartan-37.jpg';
-import image297 from '../assets/images/image297.jpg';
-import image299 from '../assets/images/image299.jpg';
-import image301 from '../assets/images/image301.jpg';
-import image303 from '../assets/images/image303.jpg';
+import React, { useEffect, useState } from 'react';
+import Carousel from 'react-bootstrap/Carousel';
+import { FleetItem, loadFleet } from './fleetLoader';
 import silentVoyage from '../assets/images/silentVoyage.jpeg';
 import oceansAreWaiting from '../assets/images/oceansAreWaiting.jpeg';
 import superiorRun from '../assets/images/superiorRun.jpeg';
@@ -14,7 +11,25 @@ import holiday from '../assets/images/holiday.jpg';
 import './Home.css'
 import Hero from "../components/Hero";
 
+function shuffle<T>(items: T[]): T[] {
+    const result = [...items];
+    for (let i = result.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [result[i], result[j]] = [result[j], result[i]];
+    }
+    return result;
+}
+
 function Home() {
+    const [images, setImages] = useState<FleetItem[]>([]);
+
+    useEffect(() => {
+        loadFleet().then(fleet => {
+            const withImages = fleet.filter(item => item.img != null && item.img.length > 0);
+            setImages(shuffle(withImages));
+        });
+    }, []);
+
     return (
         <div>
             {Hero()}
@@ -23,18 +38,18 @@ function Home() {
 
                 <br/>
                 <div className="row">
-                    <div className="col">
-                        <img src={image297}/>
-                    </div>
-                    <div className="col">
-                        <img src={image299}/>
-                    </div>
-                    <div className="col">
-                        <img src={image301}/>
-                    </div>
-                    <div className="col">
-                        <img src={image303}/>
-                    </div>
+                    <Carousel fade interval={3000} controls={false}>
+                        {images.map(item => (
+                            <Carousel.Item key={item.hull}>
+                                <img className="d-block w-100" src={'/fleetimg/' + item.img} alt={item.name}
+                                     style={{maxHeight: '4in', objectFit: 'contain'}}/>
+                                <Carousel.Caption>
+                                    <h5 style={{textShadow: '0 0 6px black, 0 0 6px black'}}>Hull #{item.hull} {item.name}</h5>
+                                    <p style={{textShadow: '0 0 6px black, 0 0 6px black'}}>{item.location}</p>
+                                </Carousel.Caption>
+                            </Carousel.Item>
+                        ))}
+                    </Carousel>
                 </div>
 
                 <br/>
