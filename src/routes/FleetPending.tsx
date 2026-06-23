@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {Alert, Button, Form} from 'react-bootstrap';
-import {useHistory} from 'react-router-dom';
+import {useHistory, useLocation} from 'react-router-dom';
 import {AuthContext} from '../AuthContext';
 
 interface PendingRecord {
@@ -17,6 +17,7 @@ interface PendingRecord {
 function FleetPending() {
     const {username, loading} = useContext(AuthContext);
     const history = useHistory();
+    const location = useLocation();
     const [records, setRecords] = useState<PendingRecord[]>([]);
     const [approved, setApproved] = useState<Record<number, boolean>>({});
     const [rejected, setRejected] = useState<Record<number, boolean>>({});
@@ -26,9 +27,9 @@ function FleetPending() {
 
     useEffect(() => {
         if (!loading && !username) {
-            history.push('/login');
+            history.push('/login', {from: location.pathname});
         }
-    }, [loading, username, history]);
+    }, [loading, username, history, location]);
 
     useEffect(() => {
         fetch('/fleet_pending.php', {credentials: 'same-origin'})

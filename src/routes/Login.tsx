@@ -1,7 +1,11 @@
 import React, {useContext, useState} from 'react';
 import {Alert, Button, Form} from 'react-bootstrap';
-import {useHistory} from 'react-router-dom';
+import {useHistory, useLocation} from 'react-router-dom';
 import {AuthContext} from '../AuthContext';
+
+interface LocationState {
+    from?: string;
+}
 
 function Login() {
     const [username, setUsername] = useState('');
@@ -10,6 +14,7 @@ function Login() {
     const [submitting, setSubmitting] = useState(false);
     const {setUsername: setAuthUsername} = useContext(AuthContext);
     const history = useHistory();
+    const location = useLocation<LocationState>();
 
     function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
@@ -27,7 +32,7 @@ function Login() {
                     throw new Error(data.error || 'login failed');
                 }
                 setAuthUsername(data.username);
-                history.push('/');
+                history.push(location.state?.from || '/');
             })
             .catch(() => setError('Invalid username or password.'))
             .finally(() => setSubmitting(false));

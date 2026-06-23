@@ -1490,14 +1490,13 @@
             "name": "Will Kamp",
             "modified_by_user_id": 407,
             "modified_by_username": "Waymaker",
-            "modified_ds": "2026-06-21T17:15:27+00:00"
+            "modified_ds": "2026-06-22T21:54:09+00:00"
         },
         "name": "Waymaker",
-        "type": "DK",
+        "type": "Deep Keel",
         "blurb": "",
         "location": "Tacoma, WA",
-        "web": "https:\/\/www.instagram.com\/sv.waymaker\/",
-        "img": "144.jpg"
+        "web": "https:\/\/www.instagram.com\/sv.waymaker\/"
     },
     {
         "hull": 145,
@@ -3924,12 +3923,16 @@
     {
         "hull": 378,
         "owner": {
-            "name": "Daniel Schlauch"
+            "name": "Michael Cyr",
+            "modified_by_user_id": 425,
+            "modified_by_username": "michaelecyr",
+            "modified_ds": "2026-06-22T22:41:27+00:00"
         },
-        "name": "KALEIDOSCOPE",
+        "name": "KAIA",
         "type": "",
-        "blurb": "Somerville, MA",
-        "location": ""
+        "blurb": "",
+        "location": "Rockland, ME",
+        "web": ""
     },
     {
         "hull": 379,
