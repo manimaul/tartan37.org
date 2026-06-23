@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { FleetItem, loadFleet } from './fleetLoader';
+import { FleetItem, loadFleet, filterFleet } from './fleetLoader';
+import SearchInput from '../components/SearchInput';
 
 const chunkSize = 4;
 
@@ -42,15 +43,17 @@ function Row(groups: FleetItem[]) {
 
 function Gallery() {
     const [fleet, setFleet] = useState<FleetItem[]>([]);
+    const [query, setQuery] = useState('');
 
     useEffect(() => {
         loadFleet().then(setFleet);
     }, []);
 
-    const withImages = fleet.filter(item => item.img != null && item.img.length > 0);
+    const withImages = filterFleet(fleet, query).filter(item => item.img != null && item.img.length > 0);
 
     return (
         <div className="container">
+            <SearchInput value={query} onChange={setQuery} placeholder="Search gallery" />
             {Chunk(withImages).map((chunk) => Row(chunk))}
         </div>
     );

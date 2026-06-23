@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { AuthContext } from '../AuthContext';
-import { FleetItem, loadFleet } from './fleetLoader';
+import { FleetItem, loadFleet, filterFleet } from './fleetLoader';
+import SearchInput from '../components/SearchInput';
 
 function Image(named: string) {
     if (named != null && named.length > 0) {
@@ -34,13 +35,13 @@ function Item(it: FleetItem) {
     );
 }
 
-export default class Fleet extends React.Component<any, { fleet: FleetItem[] }> {
+export default class Fleet extends React.Component<any, { fleet: FleetItem[], query: string }> {
     static contextType = AuthContext;
     declare context: React.ContextType<typeof AuthContext>;
 
     constructor(props: any) {
         super(props);
-        this.state = { fleet: [] };
+        this.state = { fleet: [], query: '' };
     }
 
     componentDidMount() {
@@ -48,6 +49,7 @@ export default class Fleet extends React.Component<any, { fleet: FleetItem[] }> 
     }
 
     public render() {
+        const filtered = filterFleet(this.state.fleet, this.state.query);
         return (
             <div className="container">
                 {this.context.username && (
@@ -55,7 +57,8 @@ export default class Fleet extends React.Component<any, { fleet: FleetItem[] }> 
                         <Link to="/fleet/edit"><Button variant="primary">Request Update</Button></Link>
                     </div>
                 )}
-                {this.state.fleet.map((it) => Item(it))}
+                <SearchInput value={this.state.query} onChange={(query) => this.setState({ query })} placeholder="Search fleet" />
+                {filtered.map((it) => Item(it))}
             </div>
         );
     }
