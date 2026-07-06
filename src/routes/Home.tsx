@@ -8,6 +8,7 @@ import soulianis from '../assets/images/soulianis.jpg';
 import tge from '../assets/images/the_great_escape.jpg';
 import whim from '../assets/images/whim.jpg';
 import holiday from '../assets/images/holiday.jpg';
+import tnf from '../assets/images/tank_never_full.jpg';
 import './Home.css'
 import Hero from "../components/Hero";
 
@@ -106,6 +107,15 @@ function Home() {
                             begin our new adventure!</p>
                         <a href="https://www.youtube.com/c/SailingonaWhim" className="btn btn-danger">Watch
                             on YouTube</a>
+                    </div>
+                </div>
+                <br/>
+                <div className="card">
+                    <img src={tnf} className="card-img-top vlog-img"/>
+                    <div className="card-body">
+                        <h5 className="card-title">Tank Never Full</h5>
+                        <p className="card-text">I'm trying to find a way that works for me. Feel free to follow along as I trip over my life.</p>
+                        <a href="https://www.youtube.com/@tankneverfull3931" className="btn btn-danger">Watch on YouTube</a>
                     </div>
                 </div>
 

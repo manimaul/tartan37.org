@@ -3,6 +3,11 @@
 React / Vite Web app
 
 Build:
-```
+```shell
 yarn build
+```
+
+Develop:
+```shell
+yarn start
 ```

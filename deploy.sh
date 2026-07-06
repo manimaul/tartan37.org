@@ -15,7 +15,9 @@ scp -P "$T37_PORT" -r dist/index.html "${T37_USER}@${T37_HOST}:${T37_REMOTE_DIR}
 scp -P "$T37_PORT" -r dist/manifest.json "${T37_USER}@${T37_HOST}:${T37_REMOTE_DIR}"
 scp -P "$T37_PORT" -r dist/robots.txt "${T37_USER}@${T37_HOST}:${T37_REMOTE_DIR}"
 scp -P "$T37_PORT" -r dist/favicon.ico "${T37_USER}@${T37_HOST}:${T37_REMOTE_DIR}"
-scp -P "$T37_PORT" -r *.php "${T37_USER}@${T37_HOST}:${T37_REMOTE_DIR}"
-scp -P "$T37_PORT" -r email_templates "${T37_USER}@${T37_HOST}:${T37_REMOTE_DIR}"
+
+## Uncomment to upload php / email changes
+#scp -P "$T37_PORT" -r *.php "${T37_USER}@${T37_HOST}:${T37_REMOTE_DIR}"
+#scp -P "$T37_PORT" -r email_templates "${T37_USER}@${T37_HOST}:${T37_REMOTE_DIR}"
 
 echo "Deploy complete."
