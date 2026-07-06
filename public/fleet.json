@@ -1490,13 +1490,14 @@
             "name": "Will Kamp",
             "modified_by_user_id": 407,
             "modified_by_username": "Waymaker",
-            "modified_ds": "2026-06-22T21:54:09+00:00"
+            "modified_ds": "2026-06-23T00:49:05+00:00"
         },
         "name": "Waymaker",
         "type": "Deep Keel",
         "blurb": "",
         "location": "Tacoma, WA",
-        "web": "https:\/\/www.instagram.com\/sv.waymaker\/"
+        "web": "https:\/\/www.instagram.com\/sv.waymaker\/",
+        "img": "144.jpg"
     },
     {
         "hull": 145,
@@ -2699,12 +2700,17 @@
     {
         "hull": 260,
         "owner": {
-            "name": "Vince Townrow"
+            "name": "Steve Foss",
+            "modified_by_user_id": 436,
+            "modified_by_username": "Steve at Tartan",
+            "modified_ds": "2026-06-24T17:30:59+00:00"
         },
-        "name": "VIXEN",
-        "type": "",
-        "blurb": "Sailing out of Port Townsend, WA",
-        "location": "Port Townsend, WA"
+        "name": "\u00d8rn",
+        "type": "T-37",
+        "blurb": "",
+        "location": "Tacoma, Wa",
+        "web": "jsfoss@gmail.com",
+        "img": "260.jpeg"
     },
     {
         "hull": 261,
@@ -2984,13 +2990,17 @@
     {
         "hull": 287,
         "owner": {
-            "name": "Wayne and Connie Howard"
+            "name": "Wayne and Connie Howard",
+            "modified_by_user_id": 229,
+            "modified_by_username": "WayneH",
+            "modified_ds": "2026-06-25T04:12:45+00:00"
         },
-        "img": "287fr.jpg",
         "name": "IMPETUOUS",
         "type": "K\/CB",
-        "blurb": "Rosharon, TX",
-        "location": ""
+        "blurb": "Pensacola, Florida",
+        "location": "Pelican's Perch",
+        "web": "",
+        "img": "287.jpg"
     },
     {
         "hull": 288,
@@ -3037,12 +3047,17 @@
     {
         "hull": 292,
         "owner": {
-            "name": ""
+            "name": "Allen Hudson Chris Bolte and Judy Brady",
+            "modified_by_user_id": 441,
+            "modified_by_username": "CBOLTE",
+            "modified_ds": "2026-06-30T12:40:11+00:00"
         },
-        "name": "",
-        "type": "",
-        "blurb": "",
-        "location": ""
+        "name": "Plaid Reputation",
+        "type": "1981 S&S CB",
+        "blurb": "New to us as 2nd owners since 2025. Working to restore her after being on the hard since 2019. ",
+        "location": "Keyport, NJ",
+        "web": "",
+        "img": "292.jpg"
     },
     {
         "hull": 293,
@@ -3261,12 +3276,17 @@
     {
         "hull": 314,
         "owner": {
-            "name": "William S. Bloodgood"
+            "name": "Saylor & Orly Guy",
+            "modified_by_user_id": 442,
+            "modified_by_username": "TheGreatEscape1",
+            "modified_ds": "2026-06-28T22:22:37+00:00"
         },
-        "name": "SEA GYPSY",
-        "type": "",
-        "blurb": "",
-        "location": "Hampton, VA"
+        "name": "Silver Lining",
+        "type": "T37",
+        "blurb": "Just a young couple that loves sailing and a good adventure! Currently living aboard and sailing the US East Coast and Caribbean.",
+        "location": "Chesapeake Bay",
+        "web": "TGEsailing.com",
+        "img": "314.jpg"
     },
     {
         "hull": 315,
@@ -3487,12 +3507,17 @@
     {
         "hull": 336,
         "owner": {
-            "name": "David & Lee Page"
+            "name": "Nick & Anna Pitera",
+            "modified_by_user_id": 439,
+            "modified_by_username": "T37C336",
+            "modified_ds": "2026-06-25T01:03:04+00:00"
         },
-        "name": "KEEWAYDIN",
-        "type": "",
+        "name": "Angela Mia",
+        "type": "K\/ CB",
         "blurb": "",
-        "location": "Sunapee, NH"
+        "location": "Sail out of Bayfield, WS. Lake Superior ",
+        "web": "",
+        "img": "336.jpeg"
     },
     {
         "hull": 337,
@@ -4721,12 +4746,17 @@
     {
         "hull": 455,
         "owner": {
-            "name": ""
+            "name": "Gordon Hinds",
+            "modified_by_user_id": 434,
+            "modified_by_username": "TartanFiji",
+            "modified_ds": "2026-06-28T00:46:20+00:00"
         },
-        "name": "",
-        "type": "",
-        "blurb": "",
-        "location": ""
+        "name": "Ellie",
+        "type": "Tartan37",
+        "blurb": "New to me Tartan37 which is need of a bit of catch up ten years maintenance\u2026 its fully imported into Fiji so it can stay forever. I\u2019m interested in having a partner in the boat so reach out if interested\u2026 ",
+        "location": "Fiji",
+        "web": "",
+        "img": "455.jpeg"
     },
     {
         "hull": 456,
