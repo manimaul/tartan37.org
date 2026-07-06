@@ -2,6 +2,7 @@ import Home from './routes/Home';
 import Gallery from './routes/Gallery';
 import Fleet from './routes/Fleet';
 import Specifications from './routes/Specifications';
+import Booklet from './routes/Booklet';
 import TechResources from './routes/TechResources';
 import History from './routes/History';
 import Login from './routes/Login';
@@ -24,6 +25,7 @@ export default class App extends Component<any, any> {
                 <Route exact={true} path={"/fleet/pending"} component={FleetPending}/>
                 <Route exact={true} path={"/gallery"} component={Gallery}/>
                 <Route exact={true} path={"/specs"} component={Specifications}/>
+                <Route exact={true} path={"/book"} component={Booklet}/>
                 <Route exact={true} path={"/resources"} component={TechResources}/>
                 {/*Forum */}
                 <Route exact={true} path={"/history"} component={History}/>

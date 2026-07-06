@@ -49,6 +49,7 @@ class MenuInternal extends Component<any, any> {
                             <Nav.Link active={this.getIsActive("/fleet")} href="/fleet">Fleet</Nav.Link>
                             <Nav.Link active={this.getIsActive("/gallery")} href="/gallery">Gallery</Nav.Link>
                             <Nav.Link active={this.getIsActive("/specs")} href="/specs">Specifications</Nav.Link>
+                            <Nav.Link active={this.getIsActive("/book")} href="/book">Owner's Booklet</Nav.Link>
                             <Nav.Link active={this.getIsActive("/resources")} href="/resources">Tech Resources</Nav.Link>
                             <Nav.Link href="https://tartan37.net/forum/index.php">Forum</Nav.Link>
                             <Nav.Link active={this.getIsActive("/history")} href="/history">History</Nav.Link>
