@@ -104,7 +104,7 @@ const sections: BookletSection[] = [
 ];
 
 function pageSrc(page: number) {
-    return `/book/pages/page-${String(page).padStart(2, '0')}.jpg`;
+    return `/book_pages/page-${String(page).padStart(2, '0')}.jpg`;
 }
 
 function Booklet() {
