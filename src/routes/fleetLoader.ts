@@ -1,5 +1,6 @@
 export interface Owner {
     name: string;
+    modified_ds?: string;
 }
 
 export interface FleetItem {

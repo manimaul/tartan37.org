@@ -12,22 +12,18 @@ import tnf from '../assets/images/tank_never_full.jpg';
 import './Home.css'
 import Hero from "../components/Hero";
 
-function shuffle<T>(items: T[]): T[] {
-    const result = [...items];
-    for (let i = result.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [result[i], result[j]] = [result[j], result[i]];
-    }
-    return result;
-}
-
 function Home() {
     const [images, setImages] = useState<FleetItem[]>([]);
 
     useEffect(() => {
         loadFleet().then(fleet => {
-            const withImages = fleet.filter(item => item.img != null && item.img.length > 0);
-            setImages(shuffle(withImages));
+            const withImages = fleet.filter(item =>
+                item.img != null && item.img.length > 0 && item.owner?.modified_ds != null
+            );
+            withImages.sort((a, b) =>
+                new Date(b.owner.modified_ds!).getTime() - new Date(a.owner.modified_ds!).getTime()
+            );
+            setImages(withImages);
         });
     }, []);
 
@@ -39,7 +35,7 @@ function Home() {
 
                 <br/>
                 <div className="row">
-                    <Carousel fade interval={3000} controls={false}>
+                    <Carousel fade interval={3000} controls={false} pause={false}>
                         {images.map(item => (
                             <Carousel.Item key={item.hull}>
                                 <img className="d-block w-100" src={'/fleetimg/' + item.img} alt={item.name}

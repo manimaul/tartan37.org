@@ -9,6 +9,9 @@ scp -P "$T37_PORT" -r "${T37_USER}@${T37_HOST}:${T37_REMOTE_DIR}/fleetimg" "${DI
 echo "Building site..."
 yarn build
 
+scp -P "$T37_PORT" -r public/book/* "${T37_USER}@${T37_HOST}:${T37_REMOTE_DIR}/public/book"
+scp -P "$T37_PORT" -r public/techres/* "${T37_USER}@${T37_HOST}:${T37_REMOTE_DIR}/public/techres"
+
 echo "Uploading to ${T37_HOST}..."
 scp -P "$T37_PORT" -r dist/assets/* "${T37_USER}@${T37_HOST}:${T37_REMOTE_DIR}/assets"
 scp -P "$T37_PORT" -r dist/index.html "${T37_USER}@${T37_HOST}:${T37_REMOTE_DIR}"
