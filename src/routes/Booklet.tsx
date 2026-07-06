@@ -107,11 +107,29 @@ function pageSrc(page: number) {
     return `/book_pages/page-${String(page).padStart(2, '0')}.jpg`;
 }
 
-function Booklet() {
-    const [page, setPage] = useState(sections[0].items[0].page as number);
+interface FlatBookletItem extends BookletItem {
+    key: string;
+}
 
-    const goBack = () => setPage((p) => Math.max(1, p - 1));
-    const goForward = () => setPage((p) => Math.min(TOTAL_PAGES, p + 1));
+const flatItems: FlatBookletItem[] = sections.flatMap((section) =>
+    section.items.map((item) => ({...item, key: `${section.title}::${item.label}`}))
+);
+
+function firstItemKeyForPage(targetPage: number): string | undefined {
+    return flatItems.find((item) => item.page === targetPage)?.key;
+}
+
+function Booklet() {
+    const [page, setPage] = useState(flatItems[0].page as number);
+    const [selectedKey, setSelectedKey] = useState(flatItems[0].key);
+
+    const goToPage = (newPage: number) => {
+        setPage(newPage);
+        setSelectedKey(firstItemKeyForPage(newPage) ?? '');
+    };
+
+    const goBack = () => goToPage(Math.max(1, page - 1));
+    const goForward = () => goToPage(Math.min(TOTAL_PAGES, page + 1));
 
     const navButtons = (
         <div className="d-flex justify-content-between my-3">
@@ -139,15 +157,22 @@ function Booklet() {
                 <Form.Label>Contents</Form.Label>
                 <Form.Control
                     as="select"
-                    value={String(page)}
-                    onChange={(e) => setPage(Number(e.target.value))}
+                    value={selectedKey}
+                    onChange={(e) => {
+                        const key = e.target.value;
+                        const item = flatItems.find((i) => i.key === key);
+                        if (item && item.page != null) {
+                            setPage(item.page);
+                            setSelectedKey(key);
+                        }
+                    }}
                 >
                     {sections.map((section) => (
                         <optgroup label={section.title} key={section.title}>
                             {section.items.map((item) => (
                                 <option
                                     key={item.label}
-                                    value={item.page ?? ''}
+                                    value={`${section.title}::${item.label}`}
                                     disabled={item.page == null}
                                 >
                                     {item.label}
